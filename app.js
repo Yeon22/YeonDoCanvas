@@ -5,16 +5,15 @@ const range = document.getElementById('jsRange');
 const mode = document.getElementById('jsMode');
 const save = document.getElementById('jsSave');
 
-const INITIAL_COLOR = '#2c2c2c';
-const CANVAS_SIZE = 700;
-
+// canvas size
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
 
-ctx.fillStyle = 'white';
+// canvas context initialize
+ctx.fillStyle = INITIAL_FILL_COLOR;
 ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
-ctx.strokeStyle = INITIAL_COLOR;
-ctx.fillStyle = INITIAL_COLOR;
+ctx.strokeStyle = INITIAL_LINE_COLOR;
+ctx.fillStyle = INITIAL_LINE_COLOR;
 ctx.lineWidth = 5.5;
 
 let painting = false;
@@ -67,10 +66,6 @@ const handleCanvasClick = () => {
   }
 };
 
-const handleContextMenu = event => {
-  event.preventDefault();
-};
-
 const handleSaveClick = () => {
   const image = canvas.toDataURL();
   const link = document.createElement('a');
@@ -85,7 +80,7 @@ if (canvas) {
   canvas.addEventListener('mouseup', stopPainting);
   canvas.addEventListener('mouseleave', stopPainting);
   canvas.addEventListener('click', handleCanvasClick);
-  canvas.addEventListener('contextmenu', handleContextMenu);
+  canvas.addEventListener('contextmenu', event => event.preventDefault());
 }
 
 Array.from(colors).forEach(color => color.addEventListener('click', handleColorClick));

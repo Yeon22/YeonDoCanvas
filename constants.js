@@ -1,0 +1,3 @@
+const INITIAL_LINE_COLOR = '#2c2c2c';
+const INITIAL_FILL_COLOR = '#FFFFFF';
+const CANVAS_SIZE = 700;

@@ -3,12 +3,19 @@ const ctx = canvas.getContext('2d');
 const colors = document.getElementsByClassName('jsColor');
 const range = document.getElementById('jsRange');
 const mode = document.getElementById('jsMode');
+const save = document.getElementById('jsSave');
 
-canvas.width = 700;
-canvas.height = 700;
+const INITIAL_COLOR = '#2c2c2c';
+const CANVAS_SIZE = 700;
 
-ctx.strokeStyle = '#2c2c2c';
-ctx.lineWidth = 2.5;
+canvas.width = CANVAS_SIZE;
+canvas.height = CANVAS_SIZE;
+
+ctx.fillStyle = 'white';
+ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+ctx.strokeStyle = INITIAL_COLOR;
+ctx.fillStyle = INITIAL_COLOR;
+ctx.lineWidth = 5.5;
 
 let painting = false;
 let filling = false;
@@ -36,6 +43,7 @@ const onMouseMove = event => {
 const handleColorClick = event => {
   const color = event.target.style.backgroundColor;
   ctx.strokeStyle = color;
+  ctx.fillStyle = color;
 };
 
 const handleRangeChange = event => {
@@ -53,11 +61,31 @@ const handleModeClick = () => {
   }
 };
 
+const handleCanvasClick = () => {
+  if (filling) {
+    ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+  }
+};
+
+const handleContextMenu = event => {
+  event.preventDefault();
+};
+
+const handleSaveClick = () => {
+  const image = canvas.toDataURL();
+  const link = document.createElement('a');
+  link.href = image
+  link.download = 'Paint_Image';
+  link.click();
+};
+
 if (canvas) {
   canvas.addEventListener('mousemove', onMouseMove);
   canvas.addEventListener('mousedown', startPainting);
   canvas.addEventListener('mouseup', stopPainting);
   canvas.addEventListener('mouseleave', stopPainting);
+  canvas.addEventListener('click', handleCanvasClick);
+  canvas.addEventListener('contextmenu', handleContextMenu);
 }
 
 Array.from(colors).forEach(color => color.addEventListener('click', handleColorClick));
@@ -68,4 +96,8 @@ if (range) {
 
 if (mode) {
   mode.addEventListener('click', handleModeClick);
+}
+
+if (save) {
+  save.addEventListener('click', handleSaveClick);
 }

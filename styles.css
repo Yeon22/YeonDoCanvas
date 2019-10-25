@@ -5,19 +5,19 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5vh 0;
+  padding: 10px 0;
 }
 
 .canvas {
-  width: 50vw;
-  height: 65vh;
+  width: 700px;
+  height: 700px;
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .controls {
-  margin-top: 45px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +32,7 @@ body {
   cursor: pointer;
   background-color: white;
   padding: 5px 0px;
-  width: 77px;
+  width: 80px;
   text-align: center;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -43,8 +43,8 @@ body {
   font-size: 13px;
 }
 
-.controls__buttons button:active {
-  transform: scale(0.98);
+.controls__buttons button:active, .controls__colors .controls__color:active {
+  transform: scale(0.95);
 }
 
 .controls .controls__colors {

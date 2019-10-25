@@ -1,4 +1,5 @@
-# Canvas VanillaJS
+# YeonDo Canvas
+This project only used Vanilla JS and Canvas
 1. Painting Line
 2. Fill Color
 3. Change Color
